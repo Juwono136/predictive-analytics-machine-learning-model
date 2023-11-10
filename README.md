@@ -481,5 +481,18 @@ Keterangan:
 - y_pred = nilai prediksi
 
 Sebelum menghitung nilai MSE, kita perlu melakukan proses scaling fitur numerik pada data uji. Karena sebelumnya , kita baru melakukan proses scaling hanya pada data latih saja. Setelah model dilatih menggunakan 3 jenis algoritma yaitu KNN, Random Forest dan AdaBoost, kita harus melakukan scaling fitur pada data uji. Hal ini harus dilakukan agar skala antara data latih dan data uji sama dan kita bisa melakukan evaluasi.
+```
+X_test.loc[:, numerical_features] = scaler.transform(X_test[numerical_features])
+```
 
+Selanjutnya, kita akan mengevaluasi ketiga model dengan metrik MSE. Saat menghitung nilai MSE pada data train dan test kita akan membaginya dengan 1e6, hal ini bertujuan agar nilai mse tidak terlalu besar skalanya. Sehingga didapat nilai MSE sebagai berikut:
 
+![data15](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/65109eff-8ef9-4a8b-a108-90df3d462469)
+
+Berdasarkan dataframe, terlihat bahwa, model Random Forest (RF) memberikan skor nilai error paling kecil dibandingkan algoritma lain seperti KNN dan AdaBoost. Jadi, Model Random Forest yang akan dipilih sebagai model terbaik untuk memprediksi harga jual rumah. Untuk mengujinya, kita buat prediksi menggunakan beberapa harga dari data test dan didapatkan output atau hasil sebagai berikut:
+
+![data16](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/ad185bb4-20ad-4974-aef2-8f7a719771c2)
+
+Terlihat bahwa prediksi Random Forest (RF) memberikan hasil yang paling mendekati dengan y_true (data test). Dimana nilai y_true adalah 233000 sedangkan nilai prediksi dari Random Forest adalah 234851.5.
+
+--- END ---
