@@ -1,9 +1,9 @@
 # Laporan Proyek Machine Learning - Juwono
 
 ## Domain Proyek
-Fluktuasi atau perubahan harga rumah dapat dipengaruhi oleh beberapa faktor termasuk lokasi, ukuran rumah, kondisi bangunan, faktor ekonomi makro dan sebagainya. Beberapa faktor tadi terkadang membingungkan dan membutuhkan waktu bagi anda untuk mempertimbangkan dan memilih rumah yang sesuai. Oleh karena itu, dibutuhkan sebuah sistem untuk memprediksi harga rumah yang dapat memberikan estimasi dengan tepat/pantas dan membantu para penjual dan pembeli dalam mengambil keputusan.
+Fluktuasi atau perubahan harga rumah dapat dipengaruhi oleh beberapa faktor termasuk lokasi, ukuran rumah, kondisi bangunan, faktor ekonomi makro dan sebagainya. Beberapa faktor tadi terkadang membingungkan dan membutuhkan waktu untuk mempertimbangkan dan memilih rumah yang sesuai. Oleh karena itu, dibutuhkan sebuah sistem untuk memprediksi harga rumah yang dapat memberikan estimasi dengan tepat/pantas dan membantu para penjual dan pembeli dalam mengambil keputusan.
 
-Dengan membangun sistem yang bisa memprediksi harga rumah, pembeli maupun penjual akan mendapatkan harga rumah yang akurat serta ekspektasi harga yang realistis sehingga bisa meminimalkan risiko overpricing atau underpricing. Jika seorang investor atau pengembang, memiliki perkiraan harga rumah yang akurat dapat membantu anda dalam menentukan apakah suatu properti merupakan investasi yang menguntungkan atau tidak.
+Dengan membangun sistem yang bisa memprediksi harga rumah, pembeli maupun penjual akan mendapatkan harga rumah yang akurat serta ekspektasi harga yang realistis sehingga bisa meminimalkan risiko overpricing atau underpricing. Jika seorang investor atau pengembang, memiliki perkiraan harga rumah yang akurat dapat membantu dalam menentukan apakah suatu properti merupakan investasi yang menguntungkan atau tidak.
 
 Untuk proses pengembangan model machine learning, dataset yang digunakan pada proyek ini adalah [Ames Housing Dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/overview). Dataset ini berisi berbagai atribut rumah yang ada di daerah Ames, Iowa, United States termasuk dengan harga jualnya dan jumlah fitur yang mencangkup setiap aspek rumah hunian di daerah tersebut. Menurut hasil studi dari [Alan Ihre et al](https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1354741&dswid=-7113) dalam jurnalnya berjudul *Predicting House Prices with Machine Learning Methods* dengan menggunakan dataset yang sama, didapat hasil bahwa permasalahan mengenai prediksi harga rumah bisa menggunakan metode regresi seperti misalnya KNN (K-Nearest Neighbor) atau Random Forest. Dengan membangun model prediksi harga rumah berdasarkan dataset dari daerah Ames, diharapkan hasil model dari proyek ini dapat juga digunakan untuk memprediksi harga rumah di daerah lain.
 
@@ -36,7 +36,7 @@ Data yang digunakan pada proyek ini adalah Ames Housing Dataset yang diunduh dar
        └── train.csv                 <- train data untuk melatih model.
 
 ### Variabel - variabel pada Ames Housing Dataset adalah sebagai berikut:
-- SalePrice : Harga jual rumah dalam dollar. Ini adalah variabel target yang ingin kita prediksi.
+- SalePrice : Harga jual rumah dalam dollar. Ini adalah variabel target yang ingin diprediksi.
 - MSSubClass : Tipe atau kelas bangunan, terdiri dari beberapa jenis kelas rumah yang direpresentasikan dalam bentuk angka.
 - MSZoning : Klasifikasi zonasi umum dari penjualan properti yang direpresentasikan dalam bentuk huruf seperti A (Agriculture/Pertanian), C (Commercial/Komersial), FV (Pemukiman Desa Terapung), I (Industri), RH (Kepadatan tinggi perumahan), RL (Kepadatan rendah perumahan), RP (Kepadatan rendah perumahan taman), dan RM (Kepadatan menengah perumahan).
 - LotFrontage : Panjang linear dari jalan yang terhubung ke properti.
@@ -127,11 +127,11 @@ Data yang digunakan pada proyek ini adalah Ames Housing Dataset yang diunduh dar
 ### Data Loading
 Pada bagian ini, dataset akan dibaca secara langsung dari folder dataset yang sudah di download melalui [Ames Housing Dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). Dataset yang diguanakan adalah train.csv yang berisi dataset untuk proses pelatihan model.
 
-Tabel 1. Train data dari Ames Housing Dataset
-
 ![data01](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/2f79b0c5-14ca-4e25-99fd-8d8b35c3b8e2)
 
-Berdasarkan Tabel 1 informasi yang didapat dataset adalah sebagai berikut:
+Gambar 1. Train data dari Ames Housing Dataset
+
+Berdasarkan Gambar 1 informasi yang didapat dataset adalah sebagai berikut:
 - Terdapat 1.460 baris (records atau jumlah pengamatan) dalam dataset.
 - Terdapat 81 kolom yaitu: Id, MSSubClass, MSZoning, LotFrontage, dan sebagainya.
 
@@ -152,13 +152,13 @@ Dengan menggunakan fungsi info() di dataset terlihat bahwa:
 - Terdapat 3 kolom dengan tipe data float64. Kolom ini merupakan fitur numerik yang merupakan hasil pengukuran secara fisik.
 - Terdapat 35 kolom dengan tipe data int64. Kolom ini merupakan fitur numerik yang salah satunya adalah target fitur yaitu harga jual rumah.
 
-Terdapat juga beberapa fitur/kolom yang memiliki nilai null/NaN. Berdasarkan hasil analisis, terdapat 19 fitur yang mempunyai nilai NaN/Null yaitu 'LotFrontage', 'Alley', 'MasVnrType', 'MasVnrArea', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'Electrical', 'FireplaceQu', 'GarageType', 'GarageYrBlt', 'GarageFinish', 'GarageQual', 'GarageCond', 'PoolQC', 'Fence', dan 'MiscFeature'. Karena nilai ini nantinya akan mengganggu kinerja dari model maka kita akan hapus fitur yang memiliki nilai NaN/Null tersebut. Setelah di drop fitur yang memiliki nilai NaN/Null, dataset akan terlihat pada Tabel 2.
-
-Tabel 2. Dataset setelah dilakukan proses drop fitur yang memiliki nilai NaN/Null
+Terdapat juga beberapa fitur/kolom yang memiliki nilai null/NaN. Berdasarkan hasil analisis, terdapat 19 fitur yang mempunyai nilai NaN/Null yaitu 'LotFrontage', 'Alley', 'MasVnrType', 'MasVnrArea', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'Electrical', 'FireplaceQu', 'GarageType', 'GarageYrBlt', 'GarageFinish', 'GarageQual', 'GarageCond', 'PoolQC', 'Fence', dan 'MiscFeature'. Karena nilai ini nantinya akan mengganggu kinerja dari model maka akan dihapus fitur yang memiliki nilai NaN/Null tersebut. Setelah di drop fitur yang memiliki nilai NaN/Null, dataset akan terlihat pada Gambar 2.
 
 ![data2](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/cfe83fab-b5d6-45b4-9015-0cbcff5affae)
 
-Berdasarkan Tabel 2 terlihat bahwa jumlah fitur yang tersisa adalah sebesar 62 fitur setelah menghilangkan fitur yang memiliki nilai NaN/Null. Selanjutnya, karena semua kolom telah memiliki tipe data yang sesuai dilakukan proses pengecekan deksripsi statistik data menggunakan fitur describe().
+Gambar 2. Dataset setelah dilakukan proses drop fitur yang memiliki nilai NaN/Null
+
+Berdasarkan Gambar 2 terlihat bahwa jumlah fitur yang tersisa adalah sebesar 62 fitur setelah menghilangkan fitur yang memiliki nilai NaN/Null. Selanjutnya, karena semua kolom telah memiliki tipe data yang sesuai dilakukan proses pengecekan deksripsi statistik data menggunakan fitur describe().
 
 Fungsi describe() memberikan informasi statistik pada masing - masing kolom, antara lain:
 - Count adalah jumlah sampel pada data.
@@ -186,51 +186,51 @@ $Batas\ bawah = Q1 - 1.5 * IQR$
 $Batas\ atas = Q3 + 1.5 * IQR$
 
 
-Selanjutnya, visualisasikan terlebih dahulu dataset dengan boxplot untuk mendeteksi outliers pada beberapa fitur numerik. Misalnya pada fitur 'MSSubClass' seperti terlihat pada Gambar 1.
+Selanjutnya, visualisasikan terlebih dahulu dataset dengan boxplot untuk mendeteksi outliers pada beberapa fitur numerik. Misalnya pada fitur 'MSSubClass' seperti terlihat pada Gambar 3.
 
 ![data3](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/acf1eb63-dd78-4e1d-ba9e-f5e9acd5d76d)
 
-Gambar 1. Boxplot untuk melihat outliers pada fitur MSSubClass
+Gambar 3. Boxplot untuk melihat outliers pada fitur MSSubClass
 
 Selanjutnya gunakan metode IQR untuk mengatasi outliers yang terdapat di beberapa fitur tersebut. Metode IQR digunakan untuk mengidentifikasi outlier yang berada di luar Q1 dan Q3. Nilai apa pun yang berada di luar batas ini dianggap sebagai outlier.
 
-Setelah dilakukan proses penghapusan outliers maka dataset akan memiliki dimensi sebesar (601, 62). Ini berarti dataset sudah bersih dan memiliki 601 sampel dengan tersisa 62 fitur. Untuk lebih jelasnya, dilakukan pengecekan kembali fitur 'MSSubClass' dengan menggunakan boxplot dan seperti terlihat pada Gambar 2 bahwa fitur tersebut sudah bersih dari outliers.
+Setelah dilakukan proses penghapusan outliers maka dataset akan memiliki dimensi sebesar (601, 62). Ini berarti dataset sudah bersih dan memiliki 601 sampel dengan tersisa 62 fitur. Untuk lebih jelasnya, dilakukan pengecekan kembali fitur 'MSSubClass' dengan menggunakan boxplot dan seperti terlihat pada Gambar 4 bahwa fitur tersebut sudah bersih dari outliers.
 
 ![data4](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/4767e2ef-c0fc-40c6-ac1e-7b21e0d37388)
 
-Gambar 2. Boxplot pada fitur MSSubClass setelah outliers dihilangkan
+Gambar 4. Boxplot pada fitur MSSubClass setelah outliers dihilangkan
 
 #### Menghapus fitur yang tidak diperlukan
 Sebelum dilakukan proses analisis data lebih lanjut. Perlu dilakuan pengecekan fitur yang tidak terlalu berpengaruh pada proses pemodelan nantinya. Penghapusan fitur yang tidak diperlukan akan membantu mempercepat proses pelatihan model dan membantu memahami data dengan lebih mudah. 
 - Pertama, dihapus kolom Id karena tidak terlalu berpengaruh pada proses training nantinya.
 - Mengecek jumlah fitur yang mempunyai unique value hanya 1 saja. Jika suatu fitur hanya memiliki satu nilai unik, maka fitur tersebut tidak terlalu berpengaruh atau memberikan banyak informasi yang berguna dalam analisis statistik atau pemodelan. Fitur ini sering disebut juga sebagai fitur konstan.
 
-Setelah dibersihkan dari fitur yang tidak perlu, maka dataset hanya tersisa 49 fitur/variabel dan akan terlihat seperti Gambar 3.
+Setelah dibersihkan dari fitur yang tidak perlu, maka dataset hanya tersisa 49 fitur/variabel dan akan terlihat seperti Gambar 5.
 
 ![data5](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/dbb065fe-b5c7-453a-a87d-e07b8656e336)
 
-Gambar 3. Dataset yang sudah bersih dari fitur yang tidak diperlukan
+Gambar 5. Dataset yang sudah bersih dari fitur yang tidak diperlukan
 
 ### Exploratory Data Analysis - Univariate Analysis
 Sebelum masuk ke tahap proses analisis data dengan teknik Univariate EDA. Pertama, dilakukan proses pembagian fitur pada dataset menjadi dua bagian, yaitu numerical features dan categorical features (non numerik). Lakukan analisis pada fitur kategori terlebih dahulu kemudian pada fitur numerik.
 
 #### Categorical Features
-Untuk fitur kategori, pertama visualisasikan dalam bentuk plot dan data frame untuk menganalisis persentase dari masing - masing fitur. Gambar 4 memperlihatkan salah satu visualisasi dari fitur bernama 'KitchenQual'.
+Untuk fitur kategori, pertama visualisasikan dalam bentuk plot dan data frame untuk menganalisis persentase dari masing - masing fitur. Gambar 6 memperlihatkan salah satu visualisasi dari fitur bernama 'KitchenQual'.
 
 ![data6](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/078b08d3-71d6-403d-ba9f-f890b0d3c516)
 
-Gambar 4. Visualisasi dari salah satu fitur kategori bernama KitchenQual
+Gambar 6. Visualisasi dari salah satu fitur kategori bernama KitchenQual
 
-Berdasarkan Gambar 4, diketahui bahwa beberapa fitur kategori memiliki persentase yang berbeda. Persentase ini menunjukkan jumlah kategori dari masing - masing fitur atau seberapa sering kategori itu muncul pada fitur tersebut.
+Berdasarkan Gambar 6, diketahui bahwa beberapa fitur kategori memiliki persentase yang berbeda. Persentase ini menunjukkan jumlah kategori dari masing - masing fitur atau seberapa sering kategori itu muncul pada fitur tersebut.
 
 #### Numerical Features
-Untuk fitur numerik kita bisa menggunakan histogram untuk melihat hubungan fitur numerik terhadap sampel. Hasilnya terlihat pada Gambar 5.
+Untuk fitur numerik bisa menggunakan histogram untuk melihat hubungan fitur numerik terhadap sampel. Hasilnya terlihat pada Gambar 7.
 
 ![data7](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/f4d9b8b3-39d2-4209-a85b-250db0ce0e47)
 
-Gambar 5. Visualisasi histogram hubungan antara fitur - fitur numerik terhadap sampel.
+Gambar 7. Visualisasi histogram hubungan antara fitur - fitur numerik terhadap sampel.
 
-Perhatikan Gambar 5, khususnya histogram untuk variabel "SalePrice" yang merupakan fitur target (label) pada dataset. Dari histogram "SalePrice" tersebut terdapat beberapa informasi, antara lain:
+Perhatikan Gambar 7, khususnya histogram untuk variabel "SalePrice" yang merupakan fitur target (label) pada dataset. Dari histogram "SalePrice" tersebut terdapat beberapa informasi, antara lain:
 - Peningkatan harga jual rumah terdistribusi dengan cukup baik. Hal ini dapat dilihat pada histogram "SalePrice" yang mana sampel cenderung meningkat lalu mengalami penurunan seiring dengan meningkatnya harga jual rumah.
 - rentang harga jual rumah cukup tinggi yaitu skala puluhan ribu dollar Amerika hingga sekitar $350000.
 - Sebagian besar harga jual rumah bernilai antara $100000 sampai $200000.
@@ -240,26 +240,26 @@ Perhatikan Gambar 5, khususnya histogram untuk variabel "SalePrice" yang merupak
 Multivariate EDA menunjukkan hubungan antara dua atau lebih variabel pada data. Multivariate EDA yang menunjukkan hubungan antara dua variabel biasa disebut sebagai bivariate EDA. Selanjutnya,untuk melihat hubungan tersebut dilakukan analisis data pada fitur kategori dan numerik.
 
 #### Categorical Features
-Untuk fitur kategori, dilakukan pengamatan rata - rata harga jual rumah terhadap fitur kategori. Gambar 6 memperlihatkan salah satu visualisasi dari fitur kategori yaitu 'PavedDrive':
+Untuk fitur kategori, dilakukan pengamatan rata - rata harga jual rumah terhadap fitur kategori. Gambar 8 memperlihatkan salah satu visualisasi dari fitur kategori yaitu 'PavedDrive':
 
 ![data8](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/02efc494-192d-4a8a-9c95-4b2f14ef0920)
 
-Gambar 6. Visualisasi diagram multivariate analysis dari salah satu fitur kategori bernama PavedDrive
+Gambar 8. Visualisasi diagram multivariate analysis dari salah satu fitur kategori bernama PavedDrive
 
-Dengan mengamati rata - rata harga jual rumah relatif terhadap fitur kategori diatas, diperoleh insight yaitu bahwa beberapa fitur kategori memiliki pengaruh yang cukup tinggi terhadap harga jual rumah. Misalkan pada fitur 'PavedDrive' (jalan masuk beraspal) yang terdapat pada Gambar 6, harga jual tertinggi dimiliki oleh tipe Y (Paved).
+Dengan mengamati rata - rata harga jual rumah relatif terhadap fitur kategori diatas, diperoleh insight yaitu bahwa beberapa fitur kategori memiliki pengaruh yang cukup tinggi terhadap harga jual rumah. Misalkan pada fitur 'PavedDrive' (jalan masuk beraspal) yang terdapat pada Gambar 8, harga jual tertinggi dimiliki oleh tipe Y (Paved).
 
 #### Numerical Features
 Untuk mengamati hubungan antara fitur numerik, dilakukan Corellation matrix untuk melihat hubungan korelasi antar fitur. Koefisien korelasi berkisar antara -1 dan +1, dimana itu akan mengukur kekuatan hubungan antara dua variabel serta arahnya (positif atau negatif). Mengenai kekuatan hubungan antar variabel, semakin dekat nilainya ke 1 atau -1, korelasinya semakin kuat. Sedangkan, semakin dekat nilainya ke 0, korelasinya semakin lemah. Arah korelasi antara dua variabel bisa bernilai positif (nilai kedua variabel cenderung meningkat bersama-sama) maupun negatif (nilai salah satu variabel cenderung meningkat ketika nilai variabel lainnya menurun).
 
 ![data9](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/1a4891d5-efd1-44d0-a392-1d897ec91a21)
 
-Gambar 7. Correlation matrix untuk fitur numerik
+Gambar 9. Correlation matrix untuk fitur numerik
 
-Berdasarkan Gambar 7, terdapat beberapa fitur yang memiliki skor korelasi yang cukup besar diatas 70% dengan fitur target yaitu "SalePrice", Fitur tersebut adalah "OveralQual", "GLivArea", "GarageCars", dan "GarageArea". Sementara fitur lainnya memiliki korelasi yang kecil. Sehingga, fitur - fitur tersebut dapat di-drop atau dihapus dari dataset. Setelah itu fitur numerik akan di cek untuk memastikan tidak ada nilai Null/NaN di dalamnya. Jika ada, maka nilai tersebut akan dihapus. Setelah dilakukan proses drop dan menghilangkan nilai None/NaN, dataset kita akan tersisa 29 fitur seperti terlihat pada Tabel 3.
-
-Tabel 3. Dataset setelah dilakukan proses EDA (Exploratory Data Analysis)
+Berdasarkan Gambar 9, terdapat beberapa fitur yang memiliki skor korelasi yang cukup besar diatas 70% dengan fitur target yaitu "SalePrice", Fitur tersebut adalah "OveralQual", "GLivArea", "GarageCars", dan "GarageArea". Sementara fitur lainnya memiliki korelasi yang kecil. Sehingga, fitur - fitur tersebut dapat di-drop atau dihapus dari dataset. Setelah itu fitur numerik akan di cek untuk memastikan tidak ada nilai Null/NaN di dalamnya. Jika ada, maka nilai tersebut akan dihapus. Setelah dilakukan proses drop dan menghilangkan nilai None/NaN, dataset akan tersisa 29 fitur seperti terlihat pada Gambar 10.
 
 ![data10](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/c6002906-3b37-4077-afbe-e8c6ac0d0b39)
+
+Gambar 10. Dataset setelah dilakukan proses EDA (Exploratory Data Analysis)
 
 ## Data Preparation
 Pada bagian ini, terdapat empat tahap persiapan data, yaitu:
@@ -269,28 +269,28 @@ Pada bagian ini, terdapat empat tahap persiapan data, yaitu:
 - Standarisasi.
 
 ### Encoding Fitur Kategori
-Proses encoding fitur kategori menggunakan teknik one-hot-encoding. Teknik ini adalah salah satu metode dalam proses encoding fitur (feature encoding) pada data kategorikal. Tujuannya adalah untuk mengubah variabel kategorikal menjadi representasi biner yang dapat digunakan dalam algoritma pembelajaran mesin. Dalam dataset terdapat beberapa variabel kategori, maka dilakukan proses encoding ini dengan fitur get_dummies. Dan menghasilkan dataset seperti terlihat pada Tabel 4.
-
-Tabel 4. Dataset hasil dari Encoding Fitur Kategori
+Proses encoding fitur kategori menggunakan teknik one-hot-encoding. Teknik ini adalah salah satu metode dalam proses encoding fitur (feature encoding) pada data kategorikal. Tujuannya adalah untuk mengubah variabel kategorikal menjadi representasi biner yang dapat digunakan dalam algoritma pembelajaran mesin. Dalam dataset terdapat beberapa variabel kategori, maka dilakukan proses encoding ini dengan fitur get_dummies. Dan menghasilkan dataset seperti terlihat pada Gambar 11.
 
 ![data11](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/a9741226-b2cc-41f1-a12c-7643fe523152)
+
+Gambar 11. Dataset hasil dari Encoding Fitur Kategori
 
 ### Reduksi Dimensi dengan PCA
 Teknik reduksi (pengurangan) dimensi adalah prosedur yang mengurangi jumlah fitur dengan tetap mempertahankan informasi pada data. Teknik pengurangan dimensi yang digunakan pada proyek ini adalah PCA. PCA adalah teknik untuk mereduksi dimensi, mengekstraksi fitur, dan mentransformasi data dari “n-dimensional space” ke dalam sistem berkoordinat baru dengan dimensi m, di mana m lebih kecil dari n.
 
 PCA bekerja menggunakan metode aljabar linier dengan mengasumsikan bahwa sekumpulan data pada arah dengan varians terbesar merupakan yang paling penting (utama). PCA umumnya digunakan ketika variabel dalam data memiliki korelasi yang tinggi. Korelasi tinggi ini menunjukkan data yang berulang atau redundant. Karena hal inilah, teknik PCA digunakan untuk mereduksi variabel asli menjadi sejumlah kecil variabel baru yang tidak berkorelasi linier, disebut komponen utama (PC). Komponen utama ini dapat menangkap sebagian besar varians dalam variabel asli. Sehingga, saat teknik PCA diterapkan pada data, PCA hanya akan menggunakan komponen utama dan mengabaikan sisanya.
 
-Sebelum dilakukan proses PCA, dilakukan proses analisis fitur numerik menggunakan pairplot. Dari hasil pairplot terdapat beberapa fitur yang akan dilakukan proses reduksi. Seperti terlihat pada Gambar 8, Fitur GrLivArea dan GarageArea memiliki korelasi yang cukup tinggi. Hal ini terjadi karena beberapa fitur tersebut mengandung informasi yang sama yaitu area/luas. Selanjutnya aplikasikan class [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) dari library scikit learn ke dalam kode program untuk melakukan pengurangan dimensi pada fitur tersebut.
+Sebelum dilakukan proses PCA, dilakukan proses analisis fitur numerik menggunakan pairplot. Dari hasil pairplot terdapat beberapa fitur yang akan dilakukan proses reduksi. Seperti terlihat pada Gambar 12, Fitur GrLivArea dan GarageArea memiliki korelasi yang cukup tinggi. Hal ini terjadi karena beberapa fitur tersebut mengandung informasi yang sama yaitu area/luas. Selanjutnya aplikasikan class [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html) dari library scikit learn ke dalam kode program untuk melakukan pengurangan dimensi pada fitur tersebut.
 
 ![data17](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/839a10fd-00d1-484a-985b-ca25b4e27002)
 
-Gambar 8. Diagram pairplot hasil proses analisis fitur numerik
+Gambar 12. Diagram pairplot hasil proses analisis fitur numerik
 
-Setelah dilakukan proses PCA, maka akan terdapat fitur baru bernama 'dimension' yang merupakan pengurangan dimensi dari fitur 'GrLivArea' dan 'GarageArea' seperti terlihat pada Tabel 5.
-
-Tabel 5. Dataset hasil dari proses PCA
+Setelah dilakukan proses PCA, maka akan terdapat fitur baru bernama 'dimension' yang merupakan pengurangan dimensi dari fitur 'GrLivArea' dan 'GarageArea' seperti terlihat pada Gamabr 13.
 
 ![data12](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/7a4d8f1d-b7fa-46d6-a2a3-78ad2efaefc6)
+
+Gambar 13. Dataset hasil dari proses PCA
 
 ### Train-Test-Split
 Selanjutnya adalah membagi dataset menjadi data latih (train) dan data uji (test). Proses pembagian dataset menggunakan library sklearn yaitu train-test-split. Proporsi pembagian adalah 80:20. Dilakukan juga pemisahkan fitur dengan target (label) yaitu SalePrice. Hasil pembagian dataset menghasilkan sampel untuk train dataset sebesar 480 dan sampel untuk test dataset sebesar 121 dari total keseluruhan dataset yaitu sebesar 601 buah sampel.
@@ -300,11 +300,11 @@ Algoritma machine learning memiliki performa lebih baik dan konvergen lebih cepa
 
 Standardisasi adalah teknik transformasi yang paling umum digunakan dalam tahap persiapan pemodelan. Untuk fitur numerik tidak akan melakukan transformasi dengan one-hot-encoding seperti pada fitur kategori, tetapi akan menggunakan teknik StandarScaler dari library Scikitlearn. StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi. StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1.
 
-Untuk menghindari kebocoran informasi pada data uji, hanya akan diterapkan fitur standarisasi pada data latih. Kemudian, setelah itu pada tahap evaluasi akan dilakukan standarisasi pada data uji. Hasil dari proses standarisasi fitur numerik bisa dilihat pada Tabel 6.
-
-Tabel 6. Fitur numerik setelah dilakukan proses standarisasi
+Untuk menghindari kebocoran informasi pada data uji, hanya akan diterapkan fitur standarisasi pada data latih. Kemudian, setelah itu pada tahap evaluasi akan dilakukan standarisasi pada data uji. Hasil dari proses standarisasi fitur numerik bisa dilihat pada Gambar 14.
 
 ![data13](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/61f07131-a214-4ca5-985d-ecb083f384f6)
+
+Gambar 14. Fitur numerik setelah dilakukan proses standarisasi
 
 ## Modeling
 Pada tahap ini, akan dikembangkan model machine learning dengan tiga algoritma. Kemudian, dilakukan evaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan digunakan antara lain:
@@ -370,16 +370,16 @@ Keterangan:
 
 Sebelum menghitung nilai MSE, dilakukan proses scaling fitur numerik pada data uji terlebih dahulu. Karena sebelumnya, hanya dilakukan proses scaling pada data latih saja. Setelah model dilatih menggunakan 3 jenis algoritma yaitu KNN, Random Forest dan AdaBoost, selanjutnya harus dilakukan proses scaling fitur pada data uji, hal ini bertujuan agar skala antara data latih dan data uji sama dan bisa melakukan proses evaluasi.
 
-Evaluasi ketiga model menggunakan metrik MSE. Saat menghitung nilai MSE pada data train dan test dilakukan pembagian dengan bilangan 1e6, hal ini bertujuan agar nilai mse tidak terlalu besar skalanya. Nilai MSE dari ketiga model dapat dilihat pada Tabel 7.
-
-Tabel 7. Nilai MSE dari ketiga model yaitu KNN, Random Forest (RF) dan Boosting Algorithm
+Evaluasi ketiga model menggunakan metrik MSE. Saat menghitung nilai MSE pada data train dan test dilakukan pembagian dengan bilangan 1e6, hal ini bertujuan agar nilai mse tidak terlalu besar skalanya. Nilai MSE dari ketiga model dapat dilihat pada Gambar 15.
 
 ![data15](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/65109eff-8ef9-4a8b-a108-90df3d462469)
 
-Berdasarkan dataframe, terlihat bahwa, model Random Forest (RF) memberikan skor nilai error paling kecil dibandingkan algoritma lain seperti KNN dan AdaBoost. Jadi, Model Random Forest yang akan dipilih sebagai model terbaik untuk memprediksi harga jual rumah. Untuk mengujinya, dilakukan prediksi menggunakan beberapa harga dari data test dan didapatkan output atau hasil seperti tabel 8.
+Gambar 15. Nilai MSE dari ketiga model yaitu KNN, Random Forest (RF) dan Boosting Algorithm
 
-Tabel 8. Hasil Prediksi dari ketika model (KNN, Random Forest, dan Boosting Algorithm) pada data uji
+Berdasarkan dataframe, terlihat bahwa, model Random Forest (RF) memberikan skor nilai error paling kecil dibandingkan algoritma lain seperti KNN dan AdaBoost. Jadi, Model Random Forest yang akan dipilih sebagai model terbaik untuk memprediksi harga jual rumah. Untuk mengujinya, dilakukan prediksi menggunakan beberapa harga dari data test dan didapatkan output atau hasil seperti Gambar 16.
 
 ![data16](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/ad185bb4-20ad-4974-aef2-8f7a719771c2)
+
+Gambar 16. Hasil Prediksi dari ketika model (KNN, Random Forest, dan Boosting Algorithm) pada data uji
 
 Terlihat bahwa prediksi Random Forest (RF) memberikan hasil yang paling mendekati dengan y_true (data test). Dimana nilai y_true adalah 233000 sedangkan nilai prediksi dari Random Forest adalah 234851.5.
