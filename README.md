@@ -299,7 +299,7 @@ numerical_features = numerical_features.dropna()
 numerical_features
 ```
 
-Setelah dilakukan proses drop dan menghilangkan nilai None/NaN, dataset kita akan memiliki 29 Fitur saja.
+Setelah dilakukan proses drop dan menghilangkan nilai None/NaN, dataset kita akan tersisa 29 fitur.
 
 ![data10](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/c6002906-3b37-4077-afbe-e8c6ac0d0b39)
 
