@@ -419,7 +419,7 @@ Tabel 7. Fitur numerik setelah dilakukan proses standarisasi
 |  283 |      1.37991  |      1.71683 |    0.316431 |
 
 ## Modeling
-Pada tahap ini, akan dikembangkan model machine learning dengan tiga algoritma. Kemudian, dilakukan evaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan digunakan antara lain:
+Pada tahap ini, akan dikembangkan model machine learning dengan tiga algoritma. Kemudian, dilakukan evaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan digunakan pada proyek kali ini antara lain:
 - K-Nearest Neighbor
 - Random Forest
 - Boosting Algorithm
@@ -440,6 +440,8 @@ Kelemahan KNN adalah:
 - Komputasi yang Tinggi pada Pengujian: Untuk memprediksi label atau nilai untuk setiap sampel baru, algoritma KNN harus menghitung jarak dari sampel baru ke semua sampel dalam set pelatihan, yang dapat memakan waktu jika dataset besar.
 - Tidak Cocok untuk Data Berkasatria Tinggi (High-Dimensional Data): Ketika jumlah fitur sangat besar, ruang berkasatria menjadi sangat penuh dan mengukur jarak antara tetangga mungkin kehilangan makna.
 
+Proses pembuatan model menggunakan algoritma KNN dimulai dengan mencari kombinasi terbaik dari hyperparameter terbaik menggunakan GridSearch. Pada tahap ini dataset yang dilatih hanya data training, sedangkan data testing digunakan nantinya untuk tahap evaluasi yang akan dibahas pada bagian evaluasi model. Proses pembuatan model menggunakan library scikit-learn bernama [KNeighborsRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html) dimana method ini menggunakan paramater bernama n_neighbors yang merepresentasikan jumlah nilai k tetangga serta digunakan juga metrik Mean Squared Error (MSE) sebagai metrik evaluasi model. Berdasarkan hasil pencarian parameter terbaik menggunakan GridSearch, di dapat nilai paramater terbaik untuk n_neighbors adalah 10 (k = 10) dengan nilai best score (KNN GridSearch score) sebesar -601473767.6230625. Nilai parameter inilah yang digunakan pada model KNN.
+
 ### Random Forest
 Random forest merupakan salah satu model machine learning yang termasuk ke dalam kategori ensemble (group) learning. Random forest merupakan model prediksi yang terdiri dari beberapa model dan bekerja secara bersama-sama. Ide dibalik model ensemble adalah sekelompok model yang bekerja bersama menyelesaikan masalah. Sehingga, tingkat keberhasilan akan lebih tinggi dibanding model yang bekerja sendirian. Pada model ensemble, setiap model harus membuat prediksi secara independen. Kemudian, prediksi dari setiap model ensemble ini digabungkan untuk membuat prediksi akhir. Disebut random forest karena algoritma ini disusun dari banyak algoritma pohon (decision tree) yang pembagian data dan fiturnya dipilih secara acak.
 
@@ -453,6 +455,14 @@ Kekurangan Random Forest:
 - Kesulitan dalam Interpretasi Model: Random Forest adalah model ensemble kompleks, yang bisa sulit untuk diinterpretasi dan menjelaskan mengapa keputusan spesifik dibuat.
 - Membutuhkan Memori Lebih Banyak: Karena Random Forest menggabungkan beberapa pohon keputusan, ia memerlukan lebih banyak memori daripada model tunggal.
 - Kurang Cepat dalam Proses Prediksi: Proses prediksi dengan Random Forest mungkin lebih lambat daripada model tunggal seperti pohon keputusan karena harus menggabungkan hasil dari beberapa pohon.
+
+Sedikit mirip dengan membuat model KNN, Proses pembuatan model menggunakan algoritma Random Forest dimulai dengan mengimpor [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) dari library scikit-learn dan mengimport mean_squared_error sebagai metrik untuk mengevaluasi performa model. Kemudian dibuat juga variabel bernama RF dan memanggil RandomForestRegressor dengan beberapa nilai parameter. Berikut adalah parameter-parameter yang digunakan:
+- n_estimator: jumlah trees (pohon) di forest.
+- max_depth: kedalaman atau panjang pohon dan merupakan ukuran seberapa banyak pohon dapat membelah (splitting) untuk membagi setiap node ke dalam jumlah pengamatan yang diinginkan.
+- random_state: digunakan untuk mengontrol random number generator yang digunakan. Pada proyek kali ini digunakan random state sebesar 55.
+- n_jobs: jumlah job (pekerjaan) yang digunakan secara paralel dan merupakan komponen untuk mengontrol thread atau proses yang berjalan secara paralel. Pada proses pembuatan model kali ini ditetapkan nilai n_jobs=-1, artinya semua proses berjalan secara paralel.
+
+Proses Pencarian nilai parameter (hyperparameter tunning) dilakukan dengan metode GridSearch. Berdasarkan hasil pencarian kombinasi nilai parameter dengan GridSearch didapat hasil nilai max_depth adalah 32 dan n_estimators adalah 60 sebagai nilai best parameters. Sedangkan didapat nilai RF GridSearch score sebesar -440290781.7763111, ini menunjukkan skor evaluasi terbaik yang didapat dari GridSearch untuk model yang dibuat. Kombinasi nilai parameter tersebut yang akan digunakan ke dalam model Random Forest pada proyek ini.
 
 ### Boosting Algorithm
 Boosting Algorithm adalah metode pembelajaran mesin ensemble yang berusaha meningkatkan kinerja model dengan menggabungkan sejumlah kecil model lemah (biasanya pohon keputusan dangkal atau pengklasifikasi lemah lainnya) menjadi model yang kuat. Secara umum, algoritma boosting bekerja dengan cara memberikan bobot yang berbeda pada setiap sampel dalam dataset sehingga model berfokus pada sampel yang sulit diprediksi oleh model sebelumnya.
@@ -469,6 +479,12 @@ Kelemahan algoritma boosting:
 - Memerlukan Waktu Komputasi yang Lebih Lama: Training boosting algorithms mungkin memerlukan lebih banyak waktu dan sumber daya komputasi dibandingkan dengan beberapa algoritma pembelajaran mesin lainnya.
 - Overfitting Jika Tidak Dikontrol: Ada kemungkinan overfitting jika parameter tidak diatur dengan benar atau jika terlalu banyak pohon digunakan dalam ensemble.
 - Rentan terhadap Noise: Boosting bisa sangat sensitif terhadap noise dalam data latih.
+
+Proses pembuatan model dengan algoritma AdaBoost dimulai dengan mengimpor [AdaBoostRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html) dari library scikit-learn serta mengimpor mean_squared_error sebagai metrik evaluasi model. Terdapat beberapa parameter yang digunakan pada method AdaBoostRegressor pada proyek ini yaitu:
+- learning_rate: bobot yang diterapkan pada setiap regressor di masing-masing proses iterasi boosting.
+- random_state: digunakan untuk mengontrol random number generator yang digunakan. Nilai random_state ditetapkan pada model ini adalah 55.
+
+Digunakan juga metode GridSearch untuk melakukan pencarian kombinasi nilai parameter terbaik yang akan digunakan pada model. Berdasarkan hasil GridSearch didapat nilai learning_rate adalah 0.1 sebagai nilai best parameters. Sedangkan nilai AdaBoost GridSearch score didapat sebesar -634782552.3145735 yang menunjukkan score evaluasi terbaik yang didapat dari GridSearch. Nilai parameter inilah yang akan digunakan ke dalam model AdaBoost.
 
 ## Evaluation
 Metrik yang digunakan pada proyek ini untuk melakukan evaluasi model adalah MSE atau [Mean Squared Error](https://en.wikipedia.org/wiki/Mean_squared_error) yang menghitung jumlah selisih kuadrat rata-rata nilai sebenarnya dengan nilai prediksi. Jika prediksi mendekati nilai sebenarnya, performanya baik. Sedangkan jika tidak, performanya buruk. Secara teknis, selisih antara nilai sebenarnya dan nilai prediksi disebut eror. Maka, semua metrik mengukur seberapa kecil nilai eror tersebut. MSE didefinisikan dalam persamaan berikut:
