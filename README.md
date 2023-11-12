@@ -489,7 +489,7 @@ Digunakan juga metode GridSearch untuk melakukan pencarian kombinasi nilai param
 ## Evaluation
 Metrik yang digunakan pada proyek ini untuk melakukan evaluasi model adalah MSE atau [Mean Squared Error](https://en.wikipedia.org/wiki/Mean_squared_error) yang menghitung jumlah selisih kuadrat rata-rata nilai sebenarnya dengan nilai prediksi. Jika prediksi mendekati nilai sebenarnya, performanya baik. Sedangkan jika tidak, performanya buruk. Secara teknis, selisih antara nilai sebenarnya dan nilai prediksi disebut eror. Maka, semua metrik mengukur seberapa kecil nilai eror tersebut. MSE didefinisikan dalam persamaan berikut:
 
-$MSE = \frac{1}{N} \Sigma_{i=1}^N({y_i}-\{y_{pred}})^2$
+$$MSE = \frac{1}{N} \Sigma_{i=1}^N({y_i}- y\_pred_i)^2$$
 
 Keterangan:
 - N = jumlah dataset
