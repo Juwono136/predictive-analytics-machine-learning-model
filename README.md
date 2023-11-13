@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Juwono
+# Laporan Proyek - Predictive Analytics Terhadap Harga Jual Rumah
 
 ## Domain Proyek
 Fluktuasi atau perubahan harga rumah dapat dipengaruhi oleh beberapa faktor termasuk lokasi, ukuran rumah, kondisi bangunan, faktor ekonomi makro dan sebagainya. Beberapa faktor tadi terkadang membingungkan dan membutuhkan waktu untuk mempertimbangkan dan memilih rumah yang sesuai. Oleh karena itu, dibutuhkan sebuah sistem untuk memprediksi harga rumah yang dapat memberikan estimasi dengan tepat/pantas dan membantu para penjual dan pembeli dalam mengambil keputusan.
