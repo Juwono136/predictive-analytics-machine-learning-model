@@ -1,6 +1,6 @@
 # Laporan Proyek - Predictive Analytics Terhadap Harga Jual Rumah
 
-Untuk penjelasan dan file projek dalam versi bahasa inggris silahkan [klik disini](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)<br>
+Untuk penjelasan dan file projek dalam versi Bahasa Inggris silahkan [klik disini](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)<br>
 *For the explanation and project files in the English version, please click [here](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)*
 
 ## Domain Proyek
