@@ -515,7 +515,7 @@ Tabel 8. Nilai MSE dari ketiga model yaitu KNN, Random Forest (RF) dan Boosting 
 
 Berdasarkan Tabel 8, terlihat bahwa, model Random Forest (RF) memberikan skor nilai error paling kecil dibandingkan algoritma lain seperti KNN dan AdaBoost. Jadi, Model Random Forest yang akan dipilih sebagai model terbaik untuk memprediksi harga jual rumah. Untuk mengujinya, dilakukan prediksi menggunakan beberapa harga dari data test dan didapatkan output atau hasil seperti Tabel 9.
 
-Tabel 9. Hasil Prediksi dari ketika model (KNN, Random Forest, dan Boosting Algorithm) pada data uji
+Tabel 9. Hasil Prediksi dari ketiga model (KNN, Random Forest, dan Boosting Algorithm) pada data uji
 
 |     |   y_true |   prediksi_KNN |   prediksi_RF |   prediksi_Boosting |
 |----:|---------:|---------------:|--------------:|--------------------:|
