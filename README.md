@@ -1,5 +1,7 @@
 # Predictive Analytics - Prediksi Harga Jual Rumah Menggunakan Algoritma Machine Learning
 
+![predictive-analytics-ames-dataset](https://github.com/Juwono136/predictive-analytics-machine-learning-model/assets/70443393/1f23b170-5a1d-41a3-a8b7-fae0925bf37e)
+
 Untuk penjelasan dan file projek dalam versi Bahasa Inggris silahkan [klik disini](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)<br>
 *For the explanation and project files in the English version, please [click here](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)*
 
