@@ -1,5 +1,8 @@
 # Laporan Proyek - Predictive Analytics Terhadap Harga Jual Rumah
 
+Untuk penjelasan dan file projek dalam versi bahasa inggris silahkan [klik disini](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)<br>
+*For the explanation and project files in the English version, please click [here](https://www.kaggle.com/code/juwonoindo/predictive-analytics-using-3-ml-models-algorithms)*
+
 ## Domain Proyek
 Fluktuasi atau perubahan harga rumah dapat dipengaruhi oleh beberapa faktor termasuk lokasi, ukuran rumah, kondisi bangunan, faktor ekonomi makro dan sebagainya. Beberapa faktor tadi terkadang membingungkan dan membutuhkan waktu untuk mempertimbangkan dan memilih rumah yang sesuai. Oleh karena itu, dibutuhkan sebuah sistem untuk memprediksi harga rumah yang dapat memberikan estimasi dengan tepat/pantas dan membantu para penjual dan pembeli dalam mengambil keputusan.
 
