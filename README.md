@@ -130,7 +130,7 @@ Data yang digunakan pada proyek ini adalah Ames Housing Dataset yang diunduh dar
 - Exploratory Data Analysis - Multivariate Analysis
 
 ### Data Loading
-Pada bagian ini, dataset akan dibaca secara langsung dari folder dataset yang sudah di download melalui [Ames Housing Dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). Dataset yang diguanakan adalah train.csv yang berisi dataset untuk proses pelatihan model.
+Pada bagian ini, dataset akan dibaca secara langsung dari folder dataset yang sudah di download melalui [Ames Housing Dataset](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data). Dataset yang digunakan adalah train.csv yang berisi dataset untuk proses pelatihan model.
 
 Tabel 1. Train data dari Ames Housing Dataset
 
